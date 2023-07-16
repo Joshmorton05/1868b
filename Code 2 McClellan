@@ -4,7 +4,7 @@ campaignTrail_temp.questions_json = [
         "pk": 138,
         "fields": {
             "priority": 0,
-            "description": "As you accept the Democratic nomination for a second time what message do you plan to give at the convention hall in your acceptance speech?",
+            "description": "As you accept the Democratic nomination for a second time what message do you want to focus your letter to the convention hall in your acceptance speech on?",
             "likelihood": 1
         }
     },
@@ -13,7 +13,7 @@ campaignTrail_temp.questions_json = [
         "pk": 193,
         "fields": {
             "priority": 1,
-            "description": "During your term you helped defeat the passage of the thirteenth Amendment which would've abolished slavery. Can you state your definitive stance on the issue of slavery?",
+            "description": "During your term, you helped defeat the passage of the thirteenth Amendment which would've abolished slavery. Can you state your definitive stance on the issue of slavery?",
             "likelihood": 1
         }
     },
