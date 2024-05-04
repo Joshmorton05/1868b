@@ -206,7 +206,7 @@ clamp = function(a, max, min, overflow=true) {
 
 var soundtracks = {
   0: {
-    name: "1868",
+    name: "Civil War Hoedown",
     tracklist: [
       {
         "name": "Tramp! Tramp! Tramp!",
