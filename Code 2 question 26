@@ -9,252 +9,6 @@ cyoAdventure = function (a) {
     ans = campaignTrail_temp.player_answers[campaignTrail_temp.player_answers.length-1];
 
 }
-$("#music_player")[0].children[0].style.display="none"
-$("#music_player")[0].children[1].style.display="none"
-
-document.getElementById("modLoadReveal").style.display="none"
-document.getElementById("modloaddiv").style.display="none"
-
-musicBox = document.getElementById("music_player")
-musicBox.style.display=""
-
-var trackSel;
-e = campaignTrail_temp
-e.selectedSoundtrack = 0
-
-toTime = (seconds) => {
-  var date = new Date(null);
-  date.setSeconds(seconds);
-  return date.toISOString().substr(11, 8);
-}
-
-generateTime = () => {
-    // Get the audio element
-    var audio = document.getElementById("campaigntrailmusic");
-
-    timeTracker = document.createElement("div");
-    timeTracker.style = `
-      text-align:left;
-      border-style:solid;
-      border-width:3px;
-      height:150px;
-      width:200px;
-      background-color:#999999;
-      float:right;
-      padding: 10px;
-    `
-    $("#trackSelParent")[0].prepend(timeTracker);
-    $("#trackSelParent")[0].prepend(document.createElement("br"));
-
-    // Create a new element to display the current position of the audio
-    var positionDisplay = document.createElement("gg");
-    positionDisplay.id = "position-display";
-
-    // Create a new slider element to change the time
-    var timeSlider = document.createElement("input");
-    timeSlider.type = "range";
-    timeSlider.min = 0;
-    timeSlider.max = 1;
-    timeSlider.step = 0.001;
-    timeSlider.value = 0;
-    timeSlider.style.width = "200px";
-    timeSlider.id = "time-slider";
-
-    var pausePlay = document.createElement("button");
-    pausePlay.id = "position-display";
-    pausePlay.innerHTML = "<b>Pause</b>"
-    pausePlay.style.width = "100%";
-
-
-    pausePlay.addEventListener("click", event => {
-      event.preventDefault();
-      updatePositionDisplay();
-      let audio = document.getElementById("campaigntrailmusic");
-      if (audio.paused) {
-        audio.play();
-        event.target.innerHTML = "<b>Pause</b>";
-        return;
-      }
-      audio.pause();
-      event.target.innerHTML = "<b>Play</b>";
-      return;
-    })
-
-    var volumeLabel = document.createElement("gg");
-    volumeLabel.id = "volume-label";
-    volumeLabel.innerHTML = "<br><b>Volume: </b>"
-
-    var volumeSlider = document.createElement("input");
-    volumeSlider.type = "range";
-    volumeSlider.min = 0;
-    volumeSlider.max = 1;
-    volumeSlider.step = 0.001;
-    volumeSlider.value = 0;
-    volumeSlider.style.width = "200px";
-    volumeSlider.id = "volume-slider";
-
-    volumeSlider.value = audio.volume;
-
-    timeTracker.appendChild(pausePlay);
-    timeTracker.appendChild(document.createElement("br"));
-    timeTracker.appendChild(document.createElement("br"));
-    timeTracker.appendChild(positionDisplay);
-    timeTracker.appendChild(timeSlider);
-    timeTracker.appendChild(volumeLabel);
-    timeTracker.appendChild(volumeSlider);
-
-    updatePositionDisplay();
-
-    //for (let i = 0; i < 10; i++)
-    //timeTracker.append(document.createElement("br"));
-
-
-    // Function to update the position display
-    function updatePositionDisplay() {
-      positionDisplay.innerHTML = "<b>Time:</b> " + toTime(audio.currentTime) + "<br>";
-      timeSlider.value = audio.duration ? audio.currentTime / audio.duration : 0;
-    }
-
-    // Function to change the time of the audio
-    function changeTime() {
-      positionDisplay.innerHTML = "<b>Time:</b> " + toTime(audio.currentTime) + "<br>";
-      audio.currentTime = timeSlider.value * audio.duration;
-    }
-
-    updateVolume = event => {
-      audio.volume = event.target.value;
-    }
-    
-    // Update the position display and slider every second
-    setInterval(updatePositionDisplay, 1000);
-
-    // Listen for changes to the time slider and change the time of the audio
-    timeSlider.addEventListener("input", changeTime);
-    volumeSlider.addEventListener("input", updateVolume)
-}
-
-function newMusicPlayer() {
-  trackSel = document.createElement("div");
-  trackSel.id = "trackSelParent"
-  let z = `<br><br><br><br><br><br><br><br><br><br><div id='trackSel' style="text-align:left;border-style:solid;border-width:3px;overflow-y: scroll;overflow-x: hidden;height:200px; width:400px;background-color:#999999;float:right;">`
-  z += `<b><select id='selectSoundtrack'><option value='`+soundtracks[e.selectedSoundtrack].name+`'>`+soundtracks[e.selectedSoundtrack].name+"</option>"
-  for (i in soundtracks) {
-    if (soundtracks[e.selectedSoundtrack] != soundtracks[i]) {
-      z += `<option value='`+soundtracks[i].name+`'>`+soundtracks[i].name+`</option>`
-    }
-  }
-  z += `</select></b><br><br>`
-  // <label><input type="radio" name="option" value="option1">Option 1</label><br>
-  for (i in soundtracks[e.selectedSoundtrack].tracklist) {
-    let a = soundtracks[e.selectedSoundtrack].tracklist[i]
-    let b = `<label><input class="trackSelector" type="radio" name="trackSelector" value="`+i+`">`+a.name+`</label><br>`
-    z += b
-  }
-  z += "</div><br><br>"
-  trackSel.innerHTML = z
-
-  // select correct song
-
-  musicBox.appendChild(trackSel);
-  Array.from(document.getElementById("trackSel").children).filter(f=>{
-    return f.tagName == "LABEL"
-  }).map(f=>f.children[0])[0].checked = true
-
-  // set soundtrack changer
-
-  soundtrackSelector = document.getElementById("selectSoundtrack")
-  soundtrackSelector.onchange = function() {
-    for (i in soundtracks) {
-      if (soundtracks[i].name == soundtrackSelector.value) {
-        e.selectedSoundtrack = i
-        break
-      }
-    }
-    document.getElementById("trackSelParent").remove()
-    newMusicPlayer()
-  }
-
-  var matches = document.querySelectorAll('.trackSelector');
-
-  for (match in matches) {
-    matches[match].onchange = function() {
-      audio = $("#campaigntrailmusic")[0];
-      audio.src = soundtracks[e.selectedSoundtrack].tracklist[this.value].url
-      audio.currentTime = 0
-    }
-  }
-
-  musicBox.children[2].loop = false
-  musicBox.children[2].src = soundtracks[e.selectedSoundtrack].tracklist[0].url
-
-  musicBox.children[2].onended = function() {
-    console.log("next track")
-    let selected = Number(document.querySelector('input[name="trackSelector"]:checked').value);
-    let newSel = clamp(selected+1, soundtracks[e.selectedSoundtrack].tracklist.length-1, 0)
-    let buttons = Array.from(document.getElementById("trackSel").children).filter(f=>{
-      return f.tagName == "LABEL"
-    }).map(f=>f.children[0])
-    //let selectedIndex = buttons.map(f=>f.children[0]).map(f=>f.checked)
-    buttons[newSel].click()
-  }
-
-  for (w = 0; w < 7; w++) {
-    document.getElementById("trackSelParent").appendChild(document.createElement("br"))
-  }
-  
-  generateTime();
-}
-
-clamp = function(a, max, min, overflow=true) {
-  if (overflow) {
-    return a > max ? min : a < min ? max : a;
-  }
-  return a > max ? max : a < min ? min : a;
-}
-
-
-// Track list
-
-var soundtracks = {
-  0: {
-    name: "Civil War Hoedown",
-    tracklist: [
-      {
-        "name": "Tramp! Tramp! Tramp!",
-        "url": "https://audio.jukehost.co.uk/dSTJz49VP9tx0G0aTVy7Of00ab8vZFN9"
-      },
-      {
-        "name": "Marching along",
-        "url": "https://audio.jukehost.co.uk/K7JBArJiP2iEmGuCSTDjP63OARCKeQOl"
-      },
-      {
-        "name": "Hail Columbia",
-        "url": "https://audio.jukehost.co.uk/zQAr5WoLLS6PNE1aFxnOlGRQg3OnbBVJ"
-      },
-      {
-        "name": "Oh! Susanna",
-        "url": "https://audio.jukehost.co.uk/RJmWw3LAhkN2GHEJ4zf9mJDfTSxzkCG7"
-      },
-      {
-        "name": "Good ol' rebel",
-        "url": "https://audio.jukehost.co.uk/jcz6Kc4bK2S6m20o1hfF5bq9lY8rBJIR"
-      },
-      {
-        "name": "Battle hymn of the republic",
-        "url": "https://audio.jukehost.co.uk/LOWOXxcuOnP0rT8l4yJVqw53VF6ZNMhY"
-      },
-      {
-        "name": "Marching through Georgia",
-        "url": "https://audio.jukehost.co.uk/01onK93sOVf1gDXqVKKCYiFcNonETt6L"
-      }
-    ]
-  }
-}
-
-// Set up new music player
-
-newMusicPlayer()
-
 
 campaignTrail_temp.questions_json = [
     {
@@ -271,7 +25,7 @@ campaignTrail_temp.questions_json = [
         "pk": 166,
         "fields": {
             "priority": 0,
-            "description": "Although you were initially hesitant to run, several colleagues have convinced you to do so and you have been unanimously nominated at the Republican convention. What shall you focus on in the letter announcing your campaign?\n",
+            "description": "Although hesitant to run, several colleagues have convinced you to run and have been unanimously nominated at the Republican convention. What shall you focus your campaign letter on?\n",
             "likelihood": 1
         }
     },
@@ -280,7 +34,7 @@ campaignTrail_temp.questions_json = [
         "pk": 179,
         "fields": {
             "priority": 1,
-            "description": "You have selected Moderate Republican and former major General Jacob Cox as your vice presidential nominee. How would you like to utilize him during this campaign?",
+            "description": "You have selected moderate Republican and former major General Jacob Cox as your vice presidential nominee. How would you like to utilize him during this campaign?",
             "likelihood": 1
         }
     },
@@ -289,7 +43,7 @@ campaignTrail_temp.questions_json = [
         "pk": 193,
         "fields": {
             "priority": 1,
-            "description": "John C. Fremont has decided to run for President under the Radical Democracy ticket, questioning your true support for the abolitionist and Republican causes. His candidacy threatens to peel away the more radical elements of the party. How should we handle this development?",
+            "description": "John C. Fremont has decided to run for President under the Radical Democracy ticket, questioning your true support for the abolitionist and Republican causes. His candidacy threatens to peel away the more radical elements of the party.",
             "likelihood": 1
         }
     },
@@ -298,7 +52,7 @@ campaignTrail_temp.questions_json = [
         "pk": 195,
         "fields": {
             "priority": 1,
-            "description": "Vice President, George Pendleton, has recently been criticized for his support of printing greenbacks to pay off our debt, much similar to Lincoln’s use of greenbacks for wartime funding. This has thrust the issue of monetary policy into the spotlight and many are wondering what your position is. \n",
+            "description": "Vice President, George Pendleton, has recently been criticized for his support of printing greenbacks to pay off our debt, much similar to Lincoln’s use of greenbacks to fund the war. This has thrust the issue of monetary policy into the spotlight and many are wondering what your position is. \n",
             "likelihood": 1
         }
     },
@@ -307,7 +61,7 @@ campaignTrail_temp.questions_json = [
         "pk": 182,
         "fields": {
             "priority": 1,
-            "description": "The issue of slavery continues to dominate talks of the party's platform. Although most Radical Republicans wish for the immediate abolition of slavery, many Moderate Republicans want to adopt a more gradual process. What position will you take on this decisive issue?\n",
+            "description": "The main issue facing the Republican Party is what the platform should be on slavery. Although most Radical Republicans wish for the immediate abolition of slavery, many moderate Republicans want to adopt a more moderate position. What position will you take on this decisive issue?\n",
             "likelihood": 1
         }
     },
@@ -316,7 +70,7 @@ campaignTrail_temp.questions_json = [
         "pk": 170,
         "fields": {
             "priority": 1,
-            "description": "In 1864 War Democrats made up a large number of Lincoln supporters. Despite the dissolution of the National Union Party, many advisors feel you could still appeal to remaining War Democrats to support you instead of McClellan. How should we appeal to them?\n",
+            "description": "In 1864 war democrats made up a large number of Lincoln supporters. Despite the dissolution of the National Union Party, many advisors feel you could still appeal to remaining war Democrats to support you instead of McClellan. How should we appeal to them?\n",
             "likelihood": 1
         }
     },
@@ -352,7 +106,7 @@ campaignTrail_temp.questions_json = [
         "pk": 197,
         "fields": {
             "priority": 1,
-            "description": "Despite the war being over and a treaty signed, many in the nation hoped to reunify with the South peacefully. Of course, any hope of peaceful reunification would require us to concede on the issue of slavery. This has led to many Radicals fervently opposing the idea while moderates are much more open to it. What should our position be on the matter?",
+            "description": "Despite the war being over and a treaty signed many in the nation hoped to reunify with the South peacefully. Of course, any hope of peaceful reunification would require us to concede on the issue of slavery. This has led to many Radicals fervently opposing the idea while moderates are much more open to it. What should our position be on the matter?",
             "likelihood": 1
         }
     },
@@ -361,7 +115,7 @@ campaignTrail_temp.questions_json = [
         "pk": 167,
         "fields": {
             "priority": 1,
-            "description": "Mexico is currently facing a civil war between the Confederate and French-backed monarchists and Republican forces. Several have called for our intervention in favor of the Republicans however there is debate as to the extent of what said intervention should be. What do you wish to say on the matter?",
+            "description": "Mexico is currently facing a civil war between the Confederate and French-backed monarchists and Republican forces. Several have called for our intervention in favor of the Republicans however there is debate as to the extent of said intervention should be. What do you wish to say on the matter?",
             "likelihood": 1
         }
     },
@@ -370,7 +124,7 @@ campaignTrail_temp.questions_json = [
         "pk": 208,
         "fields": {
             "priority": 2,
-            "description": "President McClellan has continued to be a champion of labor rights during his administration with Pendleton pushing a 6-hour work day for federal workers through Congress. With labor becoming a larger voting bloc every year many wonder if we should support some of the proposed reforms.",
+            "description": "President McClellan has been a defender of labor rights during his administration. Pendleton championed a 6-hour work day for federal workers through Congress. With labor becoming a larger voting bloc every year many wonder if we should support some of the proposed reforms.",
             "likelihood": 1
         }
     },
@@ -379,7 +133,7 @@ campaignTrail_temp.questions_json = [
         "pk": 187,
         "fields": {
             "priority": 2,
-            "description": " Some of the Radical Republicans have begun supporting not just abolition but also the granting of equal rights to all Blacks. Despite being opposed by Moderate Republicans, many in the party wonder whether you would support this policy while president. ",
+            "description": " Some of the Radical Republicans have begun supporting not just abolition but also the granting of equal rights to all Blacks. Despite being opposed by moderate Republicans, many in the party wonder whether you would support this policy while president. ",
             "likelihood": 1
         }
     },
@@ -415,7 +169,7 @@ campaignTrail_temp.questions_json = [
         "pk": 241,
         "fields": {
             "priority": 2,
-            "description": "Recently an article was released written by a veteran who served under your command. He claims that during the assault on Cold Harbor in 1864 he and several other units were ordered to charge into Confederate lines resulting in the massacre of up to 7,000 men for little to no gain. This paper has been used by Democrats to accuse you of being a butcher and print several cartoons depicting you as such. How would you like to respond?",
+            "description": "Recently an article was released written by a veteran who served under your command. He claims that during the assault on Cold Harbor in 1864 he and several other units were ordered to charge into Confederate lines resulting in the massacre of up to 7,000 men for little to no gain. This paper has been used by democrats to accuse you of being a butcher and print several cartoons depicting you as such. How would you like to respond?",
             "likelihood": 1
         }
     },
@@ -424,7 +178,7 @@ campaignTrail_temp.questions_json = [
         "pk": 223,
         "fields": {
             "priority": 2,
-            "description": "Since the end of the civil war relations with Britain have been at an all-time low due to their diplomatic support of the Confederacy during the war and their pressuring us for peace. Many are wondering if we should continue to rival Britain or attempt a reconciliation between our two nations.",
+            "description": "Since the end of the civil war relations with Britain have been at an all-time low due to their diplomatic support of the Confederacy during the war and pressuring us for peace. Many are wondering if we should continue to rival Britain or attempt reconciliation between us.",
             "likelihood": 1
         }
     },
@@ -433,7 +187,7 @@ campaignTrail_temp.questions_json = [
         "pk": 216,
         "fields": {
             "priority": 2,
-            "description": "Former President Abraham Lincoln’s presidency still hangs over the nation. Although he has become extremely unpopular he still holds some influence over the party. With his Presidency only ending four years ago many wonder if you will make it an issue supporting or condoning the actions during the administration.",
+            "description": "Former President Abraham Lincoln’s presidency still hangs over the nation. Although he has become extremely unpopular he still holds some influence over the party. With his Presidency only ending four years ago many wonder if you will make an issue supporting or condoning the actions during the administration.",
             "likelihood": 1
         }
     },
@@ -451,7 +205,7 @@ campaignTrail_temp.questions_json = [
         "pk": 211,
         "fields": {
             "priority": 2,
-            "description": " A newly formed Confederate nationalist group known as the ‘Ku Klux Klan’ has sprouted up in the border states and has been seen harassing and lynching Freemen and Republicans. With many believing the group is Confederate funded many Republicans want you to take a hard stance against them.\n",
+            "description": " A newly formed Confederate nationalist group known as the ‘Ku Klux Klan’ has popped up in the border states and has been seen harassing and lynching Freemen and Republicans. With many believing the group is Confederate funded many Republicans want you to take a hard stance here.\n",
             "likelihood": 1
         }
     },
@@ -469,7 +223,7 @@ campaignTrail_temp.questions_json = [
         "pk": 226,
         "fields": {
             "priority": 2,
-            "description": "Robert Toombes recently held a summit with McClellan, in which they attempted to begin the normalization of relations. The two agreed to port access and the signing of several free trade agreements. The treaty has met a mixed response in the North and many want to know your take on the matter.",
+            "description": "Robert Toombes has recently held a summit with McClellan in which they attempted to begin the normalization of relations. The two agreed to several free trade agreements and port access. The treaty has met a mixed response in the North and many want to know your take on the matter.",
             "likelihood": 1
         }
     },
@@ -478,7 +232,16 @@ campaignTrail_temp.questions_json = [
         "pk": 192,
         "fields": {
             "priority": -1,
-            "description": " As the draws nearer you have the chance to focus on winning over a certain voting bloc. Which group do you want you and your surrogates to attempt to win over?\n",
+            "description": " As the campaign season winds down you have the chance to focus on winning over a certain voting bloc. Which group do you want to attempt to win over?\n",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 2704,
+        "fields": {
+            "priority": 0,
+            "description": "President Breckinridge has recently begun giving even more support to secessionist groups in the Border states and continues to call for the return of the Border States to the Confederacy.",
             "likelihood": 1
         }
     }
@@ -495,10 +258,18 @@ campaignTrail_temp.answers_json = [
     },
     {
         "model": "campaign_trail.answer",
+        "pk": 1353,
+        "fields": {
+            "question": 165,
+            "description": "CONFEDERATE ELECTIONS CALLED, THE MAN TO SUCCEED DAVIS IS…"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
         "pk": 1356,
         "fields": {
             "question": 166,
-            "description": "The country has just faced the most catastrophic event in our history. I promise that, as president, I will bring back American prosperity and restore American credibility globally. We will not be the world's laughing stock anymore."
+            "description": "The country has just faced the most catastrophic event in our history. I promise as President to bring back American prosperity and restore American credibility globally."
         }
     },
     {
@@ -514,7 +285,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1358,
         "fields": {
             "question": 166,
-            "description": "The Republican party’s main platform has always been the abolition of the horrid institution of slavery. We will continue to press for the emancipation of enslaved peoples in the Union and fight to ensure they are protected from violence."
+            "description": "The Republican party’s main platform has always been the support of abolition of the horrid institution of slavery. We will continue to press for the emancipation of enslaved peoples in the Union and fight to ensure they are protected from violence."
         }
     },
     {
@@ -562,7 +333,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1370,
         "fields": {
             "question": 170,
-            "description": "War Democrats are still bitter about the current Copperhead dominance of the Democratic party. I and the party leaders will meet with the leaders of the War Democrat faction and attempt to negotiate a deal promising some small cabinet positions."
+            "description": "War Democrats are still bitter about the current copperhead dominance of the Democratic party. I and the party leaders will meet with the leaders of the war Democrat faction and attempt to negotiate a deal promising some small cabinet positions."
         }
     },
     {
@@ -578,7 +349,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1399,
         "fields": {
             "question": 179,
-            "description": "Cox’s popularity as governor of Ohio grants us the opportunity to get moderates to support my candidacy. Have Cox campaign across the Midwest and show how our ticket will adequately represent the Midwest in Washington."
+            "description": "Cox allows us to improve our standing in the critical Midwest states of Ohio and Indiana. Cox’s popularity as governor of Ohio allows us a chance to get moderates to vote for my candidacy. Have Cox campaign out there and show how our ticket will adequately represent the Midwest in Washington."
         }
     },
     {
@@ -586,7 +357,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1400,
         "fields": {
             "question": 179,
-            "description": "Cox is a Moderate Republican and will help us assuage the fears of those who think the radical elements of our party have taken over. We shall play up his moderation and his term as governor to show we are a ticket for all Republicans."
+            "description": "Cox is a moderate Republican and his views will help us win over those who fear the radical elements of our party have taken over. We shall play up his moderation and his term as governor to show we are a ticket for all Republicans."
         }
     },
     {
@@ -594,7 +365,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1401,
         "fields": {
             "question": 179,
-            "description": "Major General Cox served bravely for the Union during the rebellion. Commanding the Kanawha division he fought fiercely in the peninsula and Maryland campaigns. His perseverance and loyalty to the Union can be questioned by none."
+            "description": "Major General Cox served bravely for the Union during the rebellion. Commanding the Kanawha division he fought bravely in the peninsula and Maryland campaigns. His perseverance and loyalty to the Union can be questioned by none."
         }
     },
     {
@@ -602,7 +373,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1408,
         "fields": {
             "question": 182,
-            "description": "Support for outright emancipation may drive away conservatives and moderates. I will promise a platform of gradual emancipation, although the same platform as McClellan it is politically popular and will hopefully hamper Democratic attacks on my position."
+            "description": "Support for outright emancipation may drive away conservatives and moderates. I will promise a platform of gradual emancipation, although the same platform as McClellan it is politically popular and will help take away a route of attack from the Democrats."
         }
     },
     {
@@ -618,7 +389,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1410,
         "fields": {
             "question": 182,
-            "description": "The Radicals have always been the most vocal faction in the party. I will throw them a bone by coming out in favor of the total emancipation of slaves as well as promising to create programs that will educate and give homesteads to newly freedmen."
+            "description": "The Radicals have always been the most needy in the party. I will throw them a bone by coming out in favor of the total emancipation of slaves as well as promising also to create programs to educate and give homesteads to newly freedmen."
         }
     },
     {
@@ -626,7 +397,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1411,
         "fields": {
             "question": 182,
-            "description": "We should instead focus on attempting to paint Democrats as proslavery and their attempts to pass gradual emancipation as merely a thinly veiled attempt to hold on to their plantations."
+            "description": "We should instead focus on attempting to paint Democrats as proslavery and their attempts to pass gradual emancipation as merely a thinly veiled attempt to hold on to their plantations and workers."
         }
     },
     {
@@ -658,7 +429,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1425,
         "fields": {
             "question": 186,
-            "description": "From Washington to Jackson, many of our greatest Presidents had been generals rather than politicians. There is no need to address this especially due to McClellan’s history."
+            "description": "Many of our greatest Presidents had been generals rather than politicians. There is no need to address this especially due to McClellan’s history."
         }
     },
     {
@@ -682,7 +453,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1431,
         "fields": {
             "question": 187,
-            "description": "Our country’s founding document declared that all men were created equal. After eighty years of this false promise, I think it is time we finally fulfill it. While millions of men are currently seen as subhuman and second class we cannot allow this to continue to stand. I will support the Radicals' proposals for full equality to be granted to all Slaves and Freedmen."
+            "description": "Our country’s founding document declared that all men were created equal. After eight years of this false promise, I think it is time we finally fulfill it. While millions of men are currently seen as subhuman and second class we cannot allow this to stand. I will support the radical proposals for full equality to be given to all Slaves and Freedmen."
         }
     },
     {
@@ -706,7 +477,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1434,
         "fields": {
             "question": 187,
-            "description": "The attempts by many unsavory groups to restrict the ability of the freedmen to vote in several states are appalling. The right for freedmen to vote must be secured and enforced throughout the union. We will continue to press against the attempts to restrict the rights of the freedmen."
+            "description": "The attempts by many unsavory groups to restrict the ability of the freedmen to vote in several states are appalling. The right for freedmen to vote must be secured and enforced throughout the union. We will press to counter the attempts to restrict the rights of the freedmen."
         }
     },
     {
@@ -714,7 +485,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1455,
         "fields": {
             "question": 192,
-            "description": "I will announce our support for the Homestead Act and our support for blocking southern plantation owners from moving west in order to appeal to farmers. We will also promise to hasten the process of statehood for our western states and promise to finally finish the transcontinental railroad."
+            "description": "Emphasize our support for the Homestead Act and our support for blocking southern plantation owners from moving west and taking their land. We will also promise to hasten the process of statehood for our western states and promise to finally finish the transcontinental railroad."
         }
     },
     {
@@ -722,7 +493,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1456,
         "fields": {
             "question": 192,
-            "description": "We have a chance to make inroads with the non-plantation-owning unionists in the border state by playing up our support for unionism and moderating our view on slavery. If we can win these states we can annihilate McClellan in the election."
+            "description": "We have a chance to make inroads with the non-plantation-owning border state unionists by playing up our support for unionism and moderating our view on slavery. If we can win here we can annihilate McClellan in the election."
         }
     },
     {
@@ -730,7 +501,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1457,
         "fields": {
             "question": 192,
-            "description": "Industrial workers are an obvious group to appeal to thanks to our trade policy. I will instruct my surrogates to talk about our support for high tariffs which will protect their jobs and help increase industry here in comparison to the Democrat's policy of free trade which would only increase foreign competition."
+            "description": "Industrial workers are an obvious group to appeal to thanks to our trade policy. Talk about our support for high tariffs which will protect their jobs and help increase industry here and create more jobs while the Democrat's policy of free trade would only increase competition."
         }
     },
     {
@@ -746,7 +517,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1460,
         "fields": {
             "question": 193,
-            "description": "This is the perfect opportunity to win over Moderate Democrats and show that we are not radical. I will compare our moderate positions to the radical positions held by Fremont."
+            "description": "This is the perfect opportunity to win over moderate Democrats and show that we are quite moderate compared to the radical Fremont. I will use Fremont’s campaign to compare our moderate positions to the radical positions held by Fremont and the National Republicans."
         }
     },
     {
@@ -754,7 +525,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1461,
         "fields": {
             "question": 193,
-            "description": "Fremont isn't going to win a single percent of the vote this November. Fremont has always been superficial, the best way to handle his candidacy is to pretend as though it doesn't exist. If we ignore him he won't get the attention he wanted from us."
+            "description": "Fremont isn't going to win a single percent of the vote in November. Fremont has always been superficial, the best way to handle his candidacy is to pretend as though it doesn't exist. If we ignore him he won't get the major reaction he wanted from us."
         }
     },
     {
@@ -778,7 +549,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1464,
         "fields": {
             "question": 194,
-            "description": "Many Moderate Democrats are seriously considering supporting our campaign. To win them over I shall promise to support policies establishing free trade and support traditionally Democratic economic policies."
+            "description": "Many moderate Democrats are seriously considering supporting our campaign. To win them over I shall promise to support policies establishing free trade and support traditionally Democratic economic policies."
         }
     },
     {
@@ -810,7 +581,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1468,
         "fields": {
             "question": 195,
-            "description": "The ideas being supported by the vice president are complete poppycock. Sound money is safe money and has allowed American industry to bloom into the powerhouse it is today. We should not stray from the policies that have led us so far."
+            "description": "These ideas being supported by the vice president are complete poppycock. Sound money is safe money and has allowed the American industry to bloom into the powerhouse it is today. We should not move away from the policies that have led us so far."
         }
     },
     {
@@ -818,7 +589,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1469,
         "fields": {
             "question": 195,
-            "description": "I would support the printing of greenbacks only to help pay off the large debt accumulated during the war. I would oppose the use of greenbacks for use in other matters, however."
+            "description": "I would support the printing of greenbacks only to help pay off the large debt accumulated during the war. I would oppose the use of greenbacks for other issues, however."
         }
     },
     {
@@ -826,7 +597,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1470,
         "fields": {
             "question": 195,
-            "description": "I’d support the use of greenbacks for government purchases to reduce the gigantic debt accumulated during the war. Greenbacks do much to put money back in the pockets of the common folk."
+            "description": "I’d support the use of greenbacks for government purchases to reduce the gigantic debt accumulated during the war. Greenbacks also help employers and workers give money back to the pockets of the people."
         }
     },
     {
@@ -850,7 +621,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1474,
         "fields": {
             "question": 196,
-            "description": "This order was made by one of my subordinates during the war. I had made the mistake of signing the order without reading it, for which I take the blame."
+            "description": "This order was made by one of my subordinates during the war. I made the mistake of signing the order without reading it amid the war, for which I take the blame."
         }
     },
     {
@@ -914,7 +685,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1523,
         "fields": {
             "question": 211,
-            "description": "The barbaric actions committed by this organization are nothing less than treason and go against everything our country stands for. I promise as president I will crack down on these violent criminals. We must have law and order no matter who causes the chaos."
+            "description": "These barbaric actions taken by this organization are nothing less than treason and go against everything our country stands for. I promise as president I will crack down on these violent criminals. We must have law and order no matter who causes the chaos."
         }
     },
     {
@@ -922,7 +693,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1524,
         "fields": {
             "question": 211,
-            "description": "We need to win the border states to deliver a decisive blow to the Democrats. I will hedge on the issue and refrain from bringing it up during the campaign and merely call for calm."
+            "description": "We need to win the border states to deliver a decisive blow to the Democrats. I will hedge on the issue and refrain from bringing it up during the campaign."
         }
     },
     {
@@ -938,7 +709,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1536,
         "fields": {
             "question": 216,
-            "description": "I denounce Lincoln’s administration for its failure to adopt emancipation for the Union and declare the cause of the war for what it truly was: slavery. I will also condone his attempts to moderate onthe issue of slavery and many instances of patronage seen under his rule."
+            "description": "I denounce Lincoln’s administration for its failure to adopt emancipation for the Union and declare the cause of the war for what it truly was: slavery. I will also condone his attempts to moderate the issue of slavery and many instances of patronage seen under his rule."
         }
     },
     {
@@ -970,7 +741,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1556,
         "fields": {
             "question": 222,
-            "description": "It is unacceptable to let the South have a possible stranglehold over our economy. We need to create a series of canals and railroads to allow farmers and industrialists in the Midwest to transport their goods without the need for the Mississippi. This should assuage fears and help bolster the economy.\n"
+            "description": "\n\n It is unacceptable to let the South control our economy. We need to create a series of canals and railroads to allow farmers and industrialists in the Midwest to transport their goods without the need for the Mississippi. This should assuage fears and help bolster the economy.\n"
         }
     },
     {
@@ -978,7 +749,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1557,
         "fields": {
             "question": 222,
-            "description": "As much as it may annoy the Radicals we should deal with this diplomatically. We could simply offer the South lower tariffs on their goods in return for them guaranteeing access for the Union through the Mississippi, ensuring access without the risk of war."
+            "description": "As much as it may annoy Radicals we should deal with this diplomatically. We could simply offer lower tariffs on southern goods in return for them guaranteeing access for the Union through the Mississippi, ensuring access without the risk of war."
         }
     },
     {
@@ -1010,7 +781,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1567,
         "fields": {
             "question": 226,
-            "description": "This is blatant appeasement to the South and shows that the president has no intent on containing the Confederates and stopping them from expanding across the continent."
+            "description": "This is blatant appeasement to the South and shows that the president has no intent on containing the South and stopping them from expanding across the continent."
         }
     },
     {
@@ -1058,7 +829,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1615,
         "fields": {
             "question": 241,
-            "description": "My actions during the battle were unacceptable and the thousands of young men who needlessly died continue to haunt my dreams. I will issue a public statement saying my regret for ordering the offensive and that it was a careless action that I deeply regret."
+            "description": "My actions during the battle were unacceptable and the thousands of young men who died continue to haunt my mind. I will issue a public statement saying my regret for ordering the offensive and that it was a careless action that I deeply regret and live with."
         }
     },
     {
@@ -1066,7 +837,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1616,
         "fields": {
             "question": 241,
-            "description": "Although the death toll is regrettable the fact is my strategy was the only effective strategy for winning the war. The South’s pool of soldiers was far smaller and as such higher casualties affected them far more than us and was simply a necessity of war."
+            "description": "Although the death toll is regrettable the fact is my strategy was the only effective strategy for winning the war. The South’s pool of soldiers was far smaller and as such higher casualties affected them far more than us."
         }
     },
     {
@@ -1074,7 +845,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1617,
         "fields": {
             "question": 242,
-            "description": "Patronage is an inherently corrupt idea and I will not hesitate to denounce its use and support any actions taken to help end it. We shall also come out in favor of a federal civil service commission to decrease corruption in the federal government"
+            "description": "Patronage is an inherently corrupt idea and I will not hesitate to renounce its use and support any actions taken to help end it. We shall also come out in favor of a federal civil service commission to decrease corruption in the federal government"
         }
     },
     {
@@ -1098,7 +869,7 @@ campaignTrail_temp.answers_json = [
         "pk": 2497,
         "fields": {
             "question": 166,
-            "description": "The Republican party has already represented the interests of big buisness. We will focus on our support for industrialization and support for tariffs which will help increase our industry and production output, we will also emphasize our plans for a trans-continental railroad."
+            "description": "The Republican party represents the party of business. We will focus on our support for industrialization and support for tariffs which will help increase our industry and production output, we will also emphasize our plans for a trans-continental railroad."
         }
     },
     {
@@ -1122,7 +893,7 @@ campaignTrail_temp.answers_json = [
         "pk": 2510,
         "fields": {
             "question": 184,
-            "description": "With the stakes at play in this election we must do anything in order to achieve victory. I will attempt to tour the Midwest by train and make speeches decrying the Democratic administration."
+            "description": "With the stakes at play in this election we must do anything to achieve victory. I will attempt to tour the Midwest by train and make speeches decrying the Democratic administration."
         }
     },
     {
@@ -1154,7 +925,7 @@ campaignTrail_temp.answers_json = [
         "pk": 2536,
         "fields": {
             "question": 168,
-            "description": "This is nothing but an fluke, elsewhere you can see the failure of the administration's foreign policy with their surrendering to the South and inaction in supporting Mexico against the European invasion. This is not a testament to McClellan’s policy of appeasement but a contradiction to it."
+            "description": "This is nothing but an outlier, elsewhere you can see the failure of the administration's foreign policy with their surrendering to the South and inaction in supporting Mexico against the European invasion. This is not a testament to McClellan’s policy of appeasement but a contradiction to it."
         }
     },
     {
@@ -1170,7 +941,7 @@ campaignTrail_temp.answers_json = [
         "pk": 2543,
         "fields": {
             "question": 241,
-            "description": "I will deny this ever happened. We should get General Meade to issue a statement claiming the death toll was not nearly as high as the claimant states and that they were falsely exaggerated by the author."
+            "description": "I will deny this ever happened. We should get General Meade to issue a statement claiming the death toll was not nearly as high as the claimant states."
         }
     },
     {
@@ -1210,7 +981,39 @@ campaignTrail_temp.answers_json = [
         "pk": 2564,
         "fields": {
             "question": 211,
-            "description": "What is most important is protecting our citizens. I will request the affected states use their national guard to protect Black areas and make sure the KKK can't hurt them, otherwise, I will use the national army to do so. We must protect our citizens and countrymen."
+            "description": "What is most important is protecting our citizens. I will request the affected states use their national guard to protect Black areas and make sure the KKK can't hurt them otherwise I will use the national army to do so. We must protect our citizens and countrymen."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 2705,
+        "fields": {
+            "question": 2704,
+            "description": "This is the perfect opportunity to reestablish our dominance over the South. To compromise here would be to surrender to the traitors and give them what they want. I will hold many rallies spurring patriotic fever and call on President McClellan to display a strong use of force."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 2706,
+        "fields": {
+            "question": 2704,
+            "description": "This Southern aggression can not be tolerated and threatens our very national security. I will call on the president to dispatch the army to the border and issue an ultimatum to Breckinridge as president, once elected, demanding he stop interfering in our internal politics."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 2707,
+        "fields": {
+            "question": 2704,
+            "description": "We should stay silent on his issue. Let the McClellan administration silently destroy itself as the incompetency of his Southern policy is put on full display. We will simply watch and wait."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 2708,
+        "fields": {
+            "question": 2704,
+            "description": "We will use this as an opportunity to attack McClellan’s Southern policy for allowing the South to get strong enough to directly threaten our national security. A Grant president will take a hard stance on Southern encroachment that threatens our nation."
         }
     }
 ]
@@ -3233,7 +3036,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 54,
-            "state_multiplier": 0.958
+            "state_multiplier": 0.964
         }
     },
     {
@@ -3269,7 +3072,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 62,
-            "state_multiplier": 1.0794
+            "state_multiplier": 1.0765
         }
     },
     {
@@ -3404,7 +3207,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 82,
-            "state_multiplier": 0.7965
+            "state_multiplier": 0.7869
         }
     },
     {
@@ -3440,7 +3243,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 88,
-            "state_multiplier": 1.178
+            "state_multiplier": 1.152
         }
     },
     {
@@ -3476,7 +3279,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 21,
             "state": 54,
-            "state_multiplier": 0.987
+            "state_multiplier": 1
         }
     },
     {
@@ -3512,7 +3315,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 21,
             "state": 62,
-            "state_multiplier": 1.0593
+            "state_multiplier": 1.1
         }
     },
     {
@@ -3647,7 +3450,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 21,
             "state": 82,
-            "state_multiplier": 0.8549
+            "state_multiplier": 0.86
         }
     },
     {
@@ -4918,6 +4721,46 @@ campaignTrail_temp.answer_score_global_json = [
             "affected_candidate": 22,
             "global_multiplier": 0.0038
         }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 2714,
+        "fields": {
+            "answer": 2706,
+            "candidate": 20,
+            "affected_candidate": 20,
+            "global_multiplier": -0.0046
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 2715,
+        "fields": {
+            "answer": 2708,
+            "candidate": 20,
+            "affected_candidate": 20,
+            "global_multiplier": 0.0089
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 2716,
+        "fields": {
+            "answer": 2707,
+            "candidate": 20,
+            "affected_candidate": 20,
+            "global_multiplier": 0.0069
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 2719,
+        "fields": {
+            "answer": 2705,
+            "candidate": 20,
+            "affected_candidate": 20,
+            "global_multiplier": 0.0062
+        }
     }
 ]
 
@@ -5430,6 +5273,36 @@ campaignTrail_temp.answer_score_issue_json = [
             "issue": 9,
             "issue_score": 0.17,
             "issue_importance": 2
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_issue",
+        "pk": 2717,
+        "fields": {
+            "answer": 2708,
+            "issue": 9,
+            "issue_score": -0.5,
+            "issue_importance": 1
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_issue",
+        "pk": 2718,
+        "fields": {
+            "answer": 2706,
+            "issue": 9,
+            "issue_score": -0.8,
+            "issue_importance": 2
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_issue",
+        "pk": 2720,
+        "fields": {
+            "answer": 2705,
+            "issue": 9,
+            "issue_score": -0.79,
+            "issue_importance": 1
         }
     }
 ]
@@ -6340,6 +6213,15 @@ campaignTrail_temp.answer_feedback_json = [
     },
     {
         "model": "campaign_trail.answer_feedback",
+        "pk": 483,
+        "fields": {
+            "answer": 1353,
+            "candidate": 20,
+            "answer_feedback": "SECRETARY OF WAR JOHN C. BRECKINRIDGE"
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
         "pk": 486,
         "fields": {
             "answer": 1356,
@@ -7147,6 +7029,42 @@ campaignTrail_temp.answer_feedback_json = [
             "candidate": 20,
             "answer_feedback": "Western farmers are appreciative of your support and Cox is still popular among Mid-Western farmers who may support you despite your tariff position."
         }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 2709,
+        "fields": {
+            "answer": 2705,
+            "candidate": 20,
+            "answer_feedback": "Your fanning of the flames of American jingoism forces McClellan’s hand. He sends a division to the border and further clamps down on secessionist groups. Breckinridge demands McClellan stop and the tensions between the states only grow and grow..."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 2710,
+        "fields": {
+            "answer": 2706,
+            "candidate": 20,
+            "answer_feedback": "Most people are angry but this is a bridge too far. McClellan's campaign attacks your proposal and instead uses your hawkishness to negotiate a deal with Breckinridge himself."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 2711,
+        "fields": {
+            "answer": 2707,
+            "candidate": 20,
+            "answer_feedback": "A cautious move but whether it was the correct one is likely never to be known."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 2712,
+        "fields": {
+            "answer": 2708,
+            "candidate": 20,
+            "answer_feedback": "The people are angry at the South's saber-rattling and are finally ready to take action. McClellan's refusal to stand up for the nation will only further advance his downfall."
+        }
     }
 ]
 
@@ -7155,31 +7073,6 @@ campaignTrail_temp.running_mate_image_url = "https://i.imgur.com/CfAaOxp.jpg";
 campaignTrail_temp.candidate_last_name = "Grant";
 campaignTrail_temp.running_mate_last_name = "Cox";
 
-campaignTrail_temp.multiple_endings = true;
-endingPicker = (out, totv, aa, quickstats) => {
-
-    function setImage(url) {
-        if(url == '' || url == null) return;
-        let interval = setInterval(function () {
-            img = document.getElementsByClassName("person_image")[0];
-            if (img != null) {
-                img.src = url;
-                clearInterval(interval);
-            }
-        }, 50);
-    }
-
-    if(quickstats[0] > 124) {
-        setImage("https://upload.wikimedia.org/wikipedia/commons/1/13/A_personal_history_of_Ulysses_S._Grant%2C_and_sketch_of_Schuyler_Colfax_%281868%29_%2814598619687%29.jpg");
-        return `<h3>GRANT AND COX SMASH MCCLELLAN, SOUTH VOICES PROTEST.</h3>
-<p>By god, you’ve done it! Despite McClellan’s incumbency you have managed to beat him and restore Republican rule over the country. With the powers of the White House now at your disposal, you can truly work at passing your vast agenda promised during the campaign such as drawing a stricter line when dealing with the South and the meddling Europeans. With Cox by your side veterans rejoice while Democrats tremble at the thought of possible military rule.<br><br>Republicans have increased their control of Congress winning several old Democratic seats. Cox has already begun preparing a bill that will begin a plan of gradual emancipation which seeks to end slavery within the next decade. Rumors have it that your victory has horrified Southern leaders who fear you’ll restart the war but whether that will happen remains to be seen. No matter what, you have won sir, and no one is going to take that away from you.</p>`;
-    }
-    if(quickstats[0] < 124) {
-        setImage("https://sandiegoshakespearesociety.org/wp-content/uploads/2020/10/ShakespeareCivilWar-1024x740.jpeg");
-        return `<h3>GENERAL GRANT ROUTED, MCCLELLAN SECURES VICTORY.</h3>
-<p>As the news arrives you sink into your chair. General McClellan had managed to win the election. With his victory, you look out the window and can’t help but think of the thousands of slaves that shall continue to be oppressed without any hope of relief, without any chance of freedom.<br><br>Despite the loss, the Republicans have maintained their control of Congress, holding off Democratic gains, which shall force McClellan to compromise on some issues if he wishes to achieve anything in his second term. The party’s defeat has led to great internal soul searching with many proposing radical changes to the party’s platform in order to adapt to the current situation. But as you take another swig from your flask, you know that no matter what, you have given your all for this country, and who could ask for more of a man?</p>`;
-    }
-}
 
 
 campaignTrail_temp.jet_data = [{
@@ -7190,27 +7083,8 @@ campaignTrail_temp.jet_data = [{
     },
     "mapping_enabled": false,
     "mapping_data": {},
-    "endings_enabled": true,
-    "ending_data": {
-        "1726716324124": {
-            "id": 1726716324124,
-            "variable": 0,
-            "operator": ">",
-            "value": 0,
-            "endingImage": "https://upload.wikimedia.org/wikipedia/commons/1/13/A_personal_history_of_Ulysses_S._Grant%2C_and_sketch_of_Schuyler_Colfax_%281868%29_%2814598619687%29.jpg",
-            "endingText": "<h3>GRANT AND COX SMASH MCCLELLAN, SOUTH VOICES PROTEST.</h3>\n<p>By god, you’ve done it! Despite McClellan’s incumbency you have managed to beat him and restore Republican rule over the country. With the powers of the White House now at your disposal, you can truly work at passing your vast agenda promised during the campaign such as drawing a stricter line when dealing with the South and the meddling Europeans. With Cox by your side veterans rejoice while Democrats tremble at the thought of possible military rule.<br><br>Republicans have increased their control of Congress winning several old Democratic seats. Cox has already begun preparing a bill that will begin a plan of gradual emancipation which seeks to end slavery within the next decade. Rumors have it that your victory has horrified Southern leaders who fear you’ll restart the war but whether that will happen remains to be seen. No matter what, you have won sir, and no one is going to take that away from you.</p>",
-            "amount": "124"
-        },
-        "1726716381493": {
-            "id": 1726716381493,
-            "variable": 0,
-            "operator": "<",
-            "value": 0,
-            "endingImage": "https://sandiegoshakespearesociety.org/wp-content/uploads/2020/10/ShakespeareCivilWar-1024x740.jpeg",
-            "endingText": "<h3>GENERAL GRANT ROUTED, MCCLELLAN SECURES VICTORY.</h3>\n<p>As the news arrives you sink into your chair. General McClellan had managed to win the election. With his victory, you look out the window and can’t help but think of the thousands of slaves that shall continue to be oppressed without any hope of relief, without any chance of freedom.<br><br>Despite the loss, the Republicans have maintained their control of Congress, holding off Democratic gains, which shall force McClellan to compromise on some issues if he wishes to achieve anything in his second term. The party’s defeat has led to great internal soul searching with many proposing radical changes to the party’s platform in order to adapt to the current situation. But as you take another swig from your flask, you know that no matter what, you have given your all for this country, and who could ask for more of a man?</p>",
-            "amount": "124"
-        }
-    },
+    "endings_enabled": false,
+    "ending_data": {},
     "cyoa_enabled": true,
     "cyoa_data": {},
     "banner_enabled": true,
