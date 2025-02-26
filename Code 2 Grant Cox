@@ -4980,7 +4980,7 @@ campaignTrail_temp.answer_score_issue_json = [
         "fields": {
             "answer": 1558,
             "issue": 9,
-            "issue_score": "0.0",
+            "issue_score": 0,
             "issue_importance": 4
         }
     },
@@ -6926,6 +6926,32 @@ campaignTrail_temp.running_mate_image_url = "https://i.imgur.com/CfAaOxp.jpg";
 campaignTrail_temp.candidate_last_name = "Grant";
 campaignTrail_temp.running_mate_last_name = "Cox";
 
+campaignTrail_temp.multiple_endings = true;
+endingPicker = (out, totv, aa, quickstats) => {
+
+    function setImage(url) {
+        if(url == '' || url == null) return;
+        let interval = setInterval(function () {
+            img = document.getElementsByClassName("person_image")[0];
+            if (img != null) {
+                img.src = url;
+                clearInterval(interval);
+            }
+        }, 50);
+    }
+
+    if(quickstats[0] < 124) {
+        setImage("https://collectionapi.metmuseum.org/api/collection/v1/iiif/388974/758401/main-image");
+        return `<h3>MCCLELLAN ROUTS GENERAL GRANT. DEMOCRATIC DOMINANCE REINFORCED.</h3><p>As the news arrives you sink into your chair. General McClellan had managed to win the election. With his victory, you look out the window and can’t help but think of the thousands of slaves that shall continue to be oppressed without any hope of relief, without any chance of freedom. <br><br>Despite the loss, the Republicans have maintained their control of Congress, holding off Democratic gains, which shall force McClellan to compromise on some issues if he wishes to achieve anything in his second term. The party’s defeat has led to great internal soul searching with many proposing radical changes to the party’s platform in order to adapt to the current situation. But as you take another swig from your flask, you know that no matter what, you have given your all for this country, and who could ask for more of a man?</p>`;
+    }
+    if(quickstats[0] > 124) {
+        setImage("https://cdn11.bigcommerce.com/s-yzgoj/images/stencil/1280x1280/products/1999410/2924494/apigvdzsq__89701.1626715273.jpg?c=2");
+        return ` <h3>GRANT'S MILITARY TICKET SUCCESSFUL. REPUBLICANS TAKE BACK THE WHITE HOUSE.</h3><p>By god, you’ve done it! Despite McClellan’s incumbency you have managed to beat him and restore Republican rule over the country. With the powers of the White House now at your disposal, you can truly work at passing your vast agenda promised during the campaign such as drawing a stricter line when dealing with the South and the meddling Europeans. With Cox by your side veterans rejoice while Democrats tremble at the thought of possible military rule.
+
+<br><br>Republicans have increased their control of Congress winning several old Democratic seats. Cox has already begun preparing a bill that will begin a plan of gradual emancipation which seeks to end slavery within the next decade. Rumors have it that your victory has horrified Southern leaders who fear you’ll restart the war but whether that will happen remains to be seen. No matter what, you have won sir, and no one is going to take that away from you.
+</p>`;
+    }
+}
 
 
 campaignTrail_temp.jet_data = [{
@@ -6936,8 +6962,27 @@ campaignTrail_temp.jet_data = [{
     },
     "mapping_enabled": false,
     "mapping_data": {},
-    "endings_enabled": false,
-    "ending_data": {},
+    "endings_enabled": true,
+    "ending_data": {
+        "1740595202788": {
+            "id": 1740595202788,
+            "variable": 0,
+            "operator": "<",
+            "value": 0,
+            "endingImage": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/388974/758401/main-image",
+            "endingText": "<h3>MCCLELLAN ROUTS GENERAL GRANT. DEMOCRATIC DOMINANCE REINFORCED.</h3><p>As the news arrives you sink into your chair. General McClellan had managed to win the election. With his victory, you look out the window and can’t help but think of the thousands of slaves that shall continue to be oppressed without any hope of relief, without any chance of freedom. <br><br>Despite the loss, the Republicans have maintained their control of Congress, holding off Democratic gains, which shall force McClellan to compromise on some issues if he wishes to achieve anything in his second term. The party’s defeat has led to great internal soul searching with many proposing radical changes to the party’s platform in order to adapt to the current situation. But as you take another swig from your flask, you know that no matter what, you have given your all for this country, and who could ask for more of a man?</p>",
+            "amount": "124"
+        },
+        "1740595517219": {
+            "id": 1740595517219,
+            "variable": 0,
+            "operator": ">",
+            "value": 0,
+            "endingImage": "https://cdn11.bigcommerce.com/s-yzgoj/images/stencil/1280x1280/products/1999410/2924494/apigvdzsq__89701.1626715273.jpg?c=2",
+            "endingText": " <h3>GRANT'S MILITARY TICKET SUCCESSFUL. REPUBLICANS TAKE BACK THE WHITE HOUSE.</h3><p>By god, you’ve done it! Despite McClellan’s incumbency you have managed to beat him and restore Republican rule over the country. With the powers of the White House now at your disposal, you can truly work at passing your vast agenda promised during the campaign such as drawing a stricter line when dealing with the South and the meddling Europeans. With Cox by your side veterans rejoice while Democrats tremble at the thought of possible military rule.\n\n<br><br>Republicans have increased their control of Congress winning several old Democratic seats. Cox has already begun preparing a bill that will begin a plan of gradual emancipation which seeks to end slavery within the next decade. Rumors have it that your victory has horrified Southern leaders who fear you’ll restart the war but whether that will happen remains to be seen. No matter what, you have won sir, and no one is going to take that away from you.\n</p>",
+            "amount": "124"
+        }
+    },
     "cyoa_enabled": true,
     "cyoa_data": {},
     "banner_enabled": true,
