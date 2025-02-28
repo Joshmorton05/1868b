@@ -2945,45 +2945,45 @@ campaignTrail_temp.running_mate_issue_score_json = [
         "model": "campaign_trail.candidate_issue_score",
         "pk": 126,
         "fields": {
-            "candidate": 45,
+            "candidate": 48,
             "issue": 6,
-            "issue_score": -0.6
+            "issue_score": 0.6
         }
     },
     {
         "model": "campaign_trail.candidate_issue_score",
         "pk": 127,
         "fields": {
-            "candidate": 45,
+            "candidate": 48,
             "issue": 7,
-            "issue_score": -0.65
+            "issue_score": 1
         }
     },
     {
         "model": "campaign_trail.candidate_issue_score",
         "pk": 128,
         "fields": {
-            "candidate": 45,
+            "candidate": 48,
             "issue": 8,
-            "issue_score": -0.45
+            "issue_score": 0.25
         }
     },
     {
         "model": "campaign_trail.candidate_issue_score",
         "pk": 129,
         "fields": {
-            "candidate": 45,
+            "candidate": 48,
             "issue": 9,
-            "issue_score": -0.5
+            "issue_score": -0.8
         }
     },
     {
         "model": "campaign_trail.candidate_issue_score",
         "pk": 130,
         "fields": {
-            "candidate": 45,
+            "candidate": 48,
             "issue": 10,
-            "issue_score": -0.15
+            "issue_score": -0.95
         }
     }
 ]
