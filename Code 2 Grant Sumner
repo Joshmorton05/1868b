@@ -532,7 +532,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1463,
         "fields": {
             "question": 193,
-            "description": "We should paint Fremont’s campaign as an attempt to throw the election to McClellan. We need every voter to know that a vote for Fremont is a vote for McClellan, get the papers to make cartoons depicting Fremont as a spoiler."
+            "description": "We should paint Frémont’s campaign as an attempt to throw the election to McClellan. We need every voter to know that a vote for Fremont is a vote for McClellan, get the papers to make cartoons depicting Frémont as a spoiler."
         }
     },
     {
@@ -2995,7 +2995,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 54,
-            "state_multiplier": 0.964
+            "state_multiplier": 0.994
         }
     },
     {
@@ -3004,7 +3004,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 56,
-            "state_multiplier": 1.134
+            "state_multiplier": 1.164
         }
     },
     {
@@ -3022,7 +3022,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 61,
-            "state_multiplier": 1.0204
+            "state_multiplier": 1.1204
         }
     },
     {
@@ -3103,7 +3103,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 71,
-            "state_multiplier": 1.1764
+            "state_multiplier": 1.2064
         }
     },
     {
@@ -3130,7 +3130,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 76,
-            "state_multiplier": 0.2848
+            "state_multiplier": 0.3078
         }
     },
     {
@@ -3139,7 +3139,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 77,
-            "state_multiplier": 1.3083
+            "state_multiplier": 1.3583
         }
     },
     {
@@ -3148,7 +3148,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 78,
-            "state_multiplier": 1.2644
+            "state_multiplier": 1.2967
         }
     },
     {
@@ -3157,7 +3157,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 79,
-            "state_multiplier": 0.963
+            "state_multiplier": 1.016
         }
     },
     {
@@ -3175,7 +3175,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 83,
-            "state_multiplier": 0.9954
+            "state_multiplier": 1.1054
         }
     },
     {
@@ -3184,7 +3184,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 84,
-            "state_multiplier": 1.0927
+            "state_multiplier": 1.1423
         }
     },
     {
@@ -3211,7 +3211,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 91,
-            "state_multiplier": 1.6889
+            "state_multiplier": 1.6999
         }
     },
     {
@@ -3427,7 +3427,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 21,
             "state": 84,
-            "state_multiplier": 1.38
+            "state_multiplier": 1.34
         }
     },
     {
@@ -3481,7 +3481,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 54,
-            "state_multiplier": 0.3
+            "state_multiplier": 0.27
         }
     },
     {
@@ -3490,7 +3490,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 56,
-            "state_multiplier": 0.4
+            "state_multiplier": 0.37
         }
     },
     {
@@ -3508,7 +3508,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 61,
-            "state_multiplier": 0.3
+            "state_multiplier": 0.21
         }
     },
     {
@@ -3571,7 +3571,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 69,
-            "state_multiplier": 0.2
+            "state_multiplier": 0.13
         }
     },
     {
@@ -3589,7 +3589,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 71,
-            "state_multiplier": 0.345
+            "state_multiplier": 0.315
         }
     },
     {
@@ -3616,7 +3616,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 76,
-            "state_multiplier": 0.096
+            "state_multiplier": 0.073
         }
     },
     {
@@ -3625,7 +3625,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 77,
-            "state_multiplier": 0.6
+            "state_multiplier": 0.47
         }
     },
     {
@@ -3634,7 +3634,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 78,
-            "state_multiplier": 0.1
+            "state_multiplier": 0.07
         }
     },
     {
@@ -3643,7 +3643,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 79,
-            "state_multiplier": 0.033
+            "state_multiplier": 0.013
         }
     },
     {
@@ -3661,7 +3661,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 83,
-            "state_multiplier": 0.6
+            "state_multiplier": 0.54
         }
     },
     {
@@ -3670,7 +3670,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 84,
-            "state_multiplier": 0.083
+            "state_multiplier": 0.043
         }
     },
     {
@@ -3697,7 +3697,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 91,
-            "state_multiplier": 0.5
+            "state_multiplier": 0.33
         }
     },
     {
@@ -6235,7 +6235,7 @@ campaignTrail_temp.answer_feedback_json = [
         "fields": {
             "answer": 1460,
             "candidate": 20,
-            "answer_feedback": "Many moderate War Democrats are still turned off by your selection of the radical Sumner as your Vice Presidential nominee. This pivot as well only increases the exodus of Radicals to Fremont’s ticket."
+            "answer_feedback": "Many moderate War Democrats are still turned off by your selection of the radical Sumner as your Vice Presidential nominee. This pivot as well only increases the exodus of Radicals to Frémont’s ticket."
         }
     },
     {
@@ -6253,7 +6253,7 @@ campaignTrail_temp.answer_feedback_json = [
         "fields": {
             "answer": 1462,
             "candidate": 20,
-            "answer_feedback": "Fremont’s scandalous past, including a dishonorable discharge and several Indian massacres, is taken to heart by the papers that trash his campaign. The attacks severely damage Fremont’s candidacy"
+            "answer_feedback": "Frémont’s scandalous past, including a dishonorable discharge and several Indian massacres, is taken to heart by the papers that trash his campaign. The attacks severely damage Frémont’s candidacy"
         }
     },
     {
@@ -6262,7 +6262,7 @@ campaignTrail_temp.answer_feedback_json = [
         "fields": {
             "answer": 1463,
             "candidate": 20,
-            "answer_feedback": "The party papers have a field day with this and it scares many voters away from Fremont's ticket"
+            "answer_feedback": "The party papers have a field day with this and it scares many voters away from Frémont’s ticket"
         }
     },
     {
@@ -7014,3 +7014,4 @@ campaignTrail_temp.jet_data = [{
     }
 }
 ]
+
