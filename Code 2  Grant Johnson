@@ -508,7 +508,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1460,
         "fields": {
             "question": 193,
-            "description": "This is the perfect opportunity to win over moderate Democrats and show that we are quite moderate compared to the radical Fremont. I will use Fremont’s campaign to compare our moderate positions to the radical positions held by Fremont and the National Republicans."
+            "description": "This is the perfect opportunity to win over moderate Democrats and show that we are quite moderate compared to the radical Frémont. I will use Frémont’s campaign to compare our moderate positions to the radical positions held by Frémont and the National Republicans."
         }
     },
     {
@@ -516,7 +516,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1461,
         "fields": {
             "question": 193,
-            "description": "Fremont isn't going to win a single percent of the vote in November. Fremont has always been superficial, the best way to handle his candidacy is to pretend as though it doesn't exist. If we ignore him he won't get the major reaction he wanted from us."
+            "description": "Frémont isn't going to win a single percent of the vote in November. Frémont has always been superficial, the best way to handle his candidacy is to pretend as though it doesn't exist. If we ignore him, he won't get the major reaction he wanted from us."
         }
     },
     {
@@ -524,7 +524,7 @@ campaignTrail_temp.answers_json = [
         "pk": 1462,
         "fields": {
             "question": 193,
-            "description": "Fremont’s campaign threatens to remove many Radical voters from us. Let’s try to find any dirt on him we can in hopes of sinking his campaign. Get the papers to have a field day with him."
+            "description": "Frémont's campaign threatens to remove many Radical voters from us. Let’s try to find any dirt on him we can in hopes of sinking his campaign. Get the papers to have a field day with him."
         }
     },
     {
@@ -2995,7 +2995,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 54,
-            "state_multiplier": 0.964
+            "state_multiplier": 0.884
         }
     },
     {
@@ -3004,7 +3004,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 56,
-            "state_multiplier": 1
+            "state_multiplier": 1.146
         }
     },
     {
@@ -3013,7 +3013,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 57,
-            "state_multiplier": 0.7
+            "state_multiplier": 0.88
         }
     },
     {
@@ -3022,7 +3022,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 61,
-            "state_multiplier": 1.0404
+            "state_multiplier": 1.0204
         }
     },
     {
@@ -3058,7 +3058,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 65,
-            "state_multiplier": 0.686
+            "state_multiplier": 0.999
         }
     },
     {
@@ -3067,7 +3067,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 67,
-            "state_multiplier": 1.163
+            "state_multiplier": 1.093
         }
     },
     {
@@ -3076,7 +3076,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 68,
-            "state_multiplier": 1.043
+            "state_multiplier": 1.167
         }
     },
     {
@@ -3085,7 +3085,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 69,
-            "state_multiplier": 1.1733
+            "state_multiplier": 1.1233
         }
     },
     {
@@ -3103,7 +3103,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 71,
-            "state_multiplier": 1.1764
+            "state_multiplier": 1.1364
         }
     },
     {
@@ -3112,7 +3112,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 73,
-            "state_multiplier": 0.9185
+            "state_multiplier": 1.0135
         }
     },
     {
@@ -3139,7 +3139,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 77,
-            "state_multiplier": 1.3083
+            "state_multiplier": 1.2083
         }
     },
     {
@@ -3148,7 +3148,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 78,
-            "state_multiplier": 1.1844
+            "state_multiplier": 1.0844
         }
     },
     {
@@ -3157,7 +3157,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 79,
-            "state_multiplier": 0.953
+            "state_multiplier": 0.923
         }
     },
     {
@@ -3175,7 +3175,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 83,
-            "state_multiplier": 0.9954
+            "state_multiplier": 0.8974
         }
     },
     {
@@ -3184,7 +3184,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 84,
-            "state_multiplier": 1.0927
+            "state_multiplier": 1.0727
         }
     },
     {
@@ -3193,7 +3193,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 85,
-            "state_multiplier": 1.03
+            "state_multiplier": 0.97
         }
     },
     {
@@ -3202,7 +3202,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 88,
-            "state_multiplier": 1.152
+            "state_multiplier": 1.132
         }
     },
     {
@@ -3211,7 +3211,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 20,
             "state": 91,
-            "state_multiplier": 1.5889
+            "state_multiplier": 1.559
         }
     },
     {
@@ -3310,7 +3310,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 21,
             "state": 67,
-            "state_multiplier": 1.2
+            "state_multiplier": 1.3
         }
     },
     {
@@ -3481,7 +3481,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 54,
-            "state_multiplier": 0.3
+            "state_multiplier": 0.5
         }
     },
     {
@@ -3490,7 +3490,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 56,
-            "state_multiplier": 0.4
+            "state_multiplier": 0.604
         }
     },
     {
@@ -3508,7 +3508,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 61,
-            "state_multiplier": 0.3
+            "state_multiplier": 0.6
         }
     },
     {
@@ -3553,7 +3553,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 67,
-            "state_multiplier": 0.4
+            "state_multiplier": 0.8
         }
     },
     {
@@ -3571,7 +3571,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 69,
-            "state_multiplier": 0.5
+            "state_multiplier": 0.8
         }
     },
     {
@@ -3589,7 +3589,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 71,
-            "state_multiplier": 0.345
+            "state_multiplier": 0.395
         }
     },
     {
@@ -3625,7 +3625,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 77,
-            "state_multiplier": 0.6
+            "state_multiplier": 0.906
         }
     },
     {
@@ -3634,7 +3634,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 78,
-            "state_multiplier": 0.1
+            "state_multiplier": 0.2
         }
     },
     {
@@ -3643,7 +3643,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 79,
-            "state_multiplier": 0.033
+            "state_multiplier": 0.099
         }
     },
     {
@@ -3661,7 +3661,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 83,
-            "state_multiplier": 0.6
+            "state_multiplier": 0.7
         }
     },
     {
@@ -3670,7 +3670,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 84,
-            "state_multiplier": 0.083
+            "state_multiplier": 0.163
         }
     },
     {
@@ -3679,7 +3679,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 85,
-            "state_multiplier": 0.4
+            "state_multiplier": 0.56
         }
     },
     {
@@ -3697,7 +3697,7 @@ campaignTrail_temp.candidate_state_multiplier_json = [
         "fields": {
             "candidate": 22,
             "state": 91,
-            "state_multiplier": 0.8
+            "state_multiplier": 1.076
         }
     },
     {
@@ -6284,7 +6284,7 @@ campaignTrail_temp.answer_feedback_json = [
         "fields": {
             "answer": 1463,
             "candidate": 20,
-            "answer_feedback": "The party papers have a field day with this and it scares many voters away from Fremont's ticket"
+            "answer_feedback": "The party papers have a field day with this and it scares many voters away from Frémont's ticket"
         }
     },
     {
@@ -6986,7 +6986,7 @@ endingPicker = (out, totv, aa, quickstats) => {
     if(quickstats[0] < 124) {
         setImage("https://collectionapi.metmuseum.org/api/collection/v1/iiif/388974/758401/main-image");
         return `<h3>MCCLELLAN ROUTS GENERAL GRANT. DEMOCRATIC DOMINANCE REINFORCED.</h3><p>As the news arrives you sink into your chair. General McClellan had managed to win the election. With his victory, you look out the window and can’t help but think of the thousands of slaves that shall continue to be oppressed without any hope of relief, without any chance of freedom. <br><br>Despite the loss, the Republicans have maintained their control of Congress, holding off Democratic gains, which shall force McClellan to compromise on some issues if he wishes to achieve anything in his second term. The party’s defeat has led to great internal soul searching with many proposing radical changes to the party’s platform in order to adapt to the current situation. But as you take another swig from your flask, you know that no matter what, you have given your all for this country, and who could ask for more of a man?</p>`;
-    }
+    }https://github.com/Joshmorton05/1868b/blob/main/Code%202%20%20Grant%20Johnson
     if(quickstats[0] > 124) {
         setImage("https://m.media-amazon.com/images/I/81GDysGPTGL._AC_SL1000_.jpg");
         return ` <h3>GRANT'S NATIONAL UNION GAMBLE SUCCESSFUL. UNIONIST TICKET BESTS MCCLELLAN.</h3><p>By god, you've done it! With the help of some war Democrats, you have managed to create a national coalition that has beaten the incumbent McClellan in the election. Your revival of Lincoln’s National Union party has finally achieved a truly National administration. The moderation you’ve done has left many Radical Republicans frustrated with many officially joining Fremont’s new party. In Congress, you secured a majority with many Republicans and Democrats even switching their party registration.<br><br>Now you must work to accomplish the goals you promised while campaigning. You will continue moderating on the slavery issue and focus on countering Southern influence in the Americas and hopefully reunifying with the South, but whether it will be peacefully or through blood remains to be seen. If you can keep your coalition united, perhaps the National Union party can fully establish itself as the party of all Unionists and politically dominate the country. If you manage to steer the nation over steady waters, nothing is stopping you from running for reelection in 4 years. Congrats general, on your glorious victory!
