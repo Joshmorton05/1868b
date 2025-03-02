@@ -876,7 +876,7 @@ campaignTrail_temp.answers_json = [
         "pk": 2509,
         "fields": {
             "question": 184,
-            "description": "Campaigning myself is likely a poor idea, however, we can convince our vice presidential candidate instead to tour the North in my stead."
+            "description": "Campaigning myself is likely a poor idea, however, we can convince our vice presidential candidate instead to tour the border states in my stead."
         }
     },
     {
@@ -6986,7 +6986,7 @@ endingPicker = (out, totv, aa, quickstats) => {
     if(quickstats[0] < 124) {
         setImage("https://collectionapi.metmuseum.org/api/collection/v1/iiif/388974/758401/main-image");
         return `<h3>MCCLELLAN ROUTS GENERAL GRANT. DEMOCRATIC DOMINANCE REINFORCED.</h3><p>As the news arrives you sink into your chair. General McClellan had managed to win the election. With his victory, you look out the window and can’t help but think of the thousands of slaves that shall continue to be oppressed without any hope of relief, without any chance of freedom. <br><br>Despite the loss, the Republicans have maintained their control of Congress, holding off Democratic gains, which shall force McClellan to compromise on some issues if he wishes to achieve anything in his second term. The party’s defeat has led to great internal soul searching with many proposing radical changes to the party’s platform in order to adapt to the current situation. But as you take another swig from your flask, you know that no matter what, you have given your all for this country, and who could ask for more of a man?</p>`;
-    }https://github.com/Joshmorton05/1868b/blob/main/Code%202%20%20Grant%20Johnson
+    }
     if(quickstats[0] > 124) {
         setImage("https://m.media-amazon.com/images/I/81GDysGPTGL._AC_SL1000_.jpg");
         return ` <h3>GRANT'S NATIONAL UNION GAMBLE SUCCESSFUL. UNIONIST TICKET BESTS MCCLELLAN.</h3><p>By god, you've done it! With the help of some war Democrats, you have managed to create a national coalition that has beaten the incumbent McClellan in the election. Your revival of Lincoln’s National Union party has finally achieved a truly National administration. The moderation you’ve done has left many Radical Republicans frustrated with many officially joining Fremont’s new party. In Congress, you secured a majority with many Republicans and Democrats even switching their party registration.<br><br>Now you must work to accomplish the goals you promised while campaigning. You will continue moderating on the slavery issue and focus on countering Southern influence in the Americas and hopefully reunifying with the South, but whether it will be peacefully or through blood remains to be seen. If you can keep your coalition united, perhaps the National Union party can fully establish itself as the party of all Unionists and politically dominate the country. If you manage to steer the nation over steady waters, nothing is stopping you from running for reelection in 4 years. Congrats general, on your glorious victory!
