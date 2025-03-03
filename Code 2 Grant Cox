@@ -249,14 +249,6 @@ campaignTrail_temp.answers_json = [
     },
     {
         "model": "campaign_trail.answer",
-        "pk": 1353,
-        "fields": {
-            "question": 165,
-            "description": "CONFEDERATE ELECTIONS CALLED, THE MAN TO SUCCEED DAVIS IS…"
-        }
-    },
-    {
-        "model": "campaign_trail.answer",
         "pk": 1356,
         "fields": {
             "question": 166,
@@ -6098,15 +6090,6 @@ campaignTrail_temp.answer_feedback_json = [
             "answer": 1352,
             "candidate": 20,
             "answer_feedback": "SECRETARY OF STATE ROBERT TOOMBES"
-        }
-    },
-    {
-        "model": "campaign_trail.answer_feedback",
-        "pk": 483,
-        "fields": {
-            "answer": 1353,
-            "candidate": 20,
-            "answer_feedback": "SECRETARY OF WAR JOHN C. BRECKINRIDGE"
         }
     },
     {
