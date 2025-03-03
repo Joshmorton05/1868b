@@ -249,14 +249,6 @@ campaignTrail_temp.answers_json = [
     },
     {
         "model": "campaign_trail.answer",
-        "pk": 1353,
-        "fields": {
-            "question": 165,
-            "description": "CONFEDERATE ELECTIONS CALLED, THE MAN TO SUCCEED DAVIS IS…"
-        }
-    },
-    {
-        "model": "campaign_trail.answer",
         "pk": 1356,
         "fields": {
             "question": 166,
@@ -6145,15 +6137,6 @@ campaignTrail_temp.answer_feedback_json = [
     },
     {
         "model": "campaign_trail.answer_feedback",
-        "pk": 483,
-        "fields": {
-            "answer": 1353,
-            "candidate": 20,
-            "answer_feedback": "SECRETARY OF WAR JOHN C. BRECKINRIDGE"
-        }
-    },
-    {
-        "model": "campaign_trail.answer_feedback",
         "pk": 486,
         "fields": {
             "answer": 1356,
@@ -7036,7 +7019,3 @@ campaignTrail_temp.jet_data = [{
 }
 ]
 
-if (e.running_mate_last_name === "Johnson") {
-var id = e.candidate_json.map(p=>p.pk).indexOf(20)
-e.candidate_json[id].fields.color_hex = "#B22222" 
-}
